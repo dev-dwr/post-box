@@ -5,11 +5,9 @@ import React from "react";
 import { Wrapper } from "./Wrapper";
 import {InputField} from './InputField';
 import {toErrorMap} from '../utils/toErrorMap'
-export const DataForm = () => {
 
-    function refreshPage(){
-        window.location.reload();
-    }
+
+export const DataForm = () => {
 
     return (
         <Wrapper variant="regular">
@@ -19,11 +17,13 @@ export const DataForm = () => {
 
             <Formik
                 initialValues={{ title: "", message: "" }}
-                onSubmit={ async (values, actions) => {
+                onSubmit={async (values, actions) => {
                     const result = await axios.post("http://localhost:4000/api/posts/", values)
-                    
+                    console.log(result)
                     if(result.data.errors){
                         actions.setErrors(toErrorMap(result.data.errors))
+                    }else{
+                        window.location.reload();
                     }
                 
                 }}
@@ -44,7 +44,7 @@ export const DataForm = () => {
                             colorScheme="teal"
                             isLoading={isSubmitting}
                             type="submit"
-                            onClick= {refreshPage}
+                            //onClick= {refreshPage}
                         >
                             Submit
                         </Button>

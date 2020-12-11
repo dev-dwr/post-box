@@ -27,7 +27,6 @@ router.post("/", [
         .isLength({ min: 6 })
         .withMessage('Message must be greater than 6')
 ], (req, res) => {
-
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
         return res.json({ errors: errors.array() });
@@ -51,6 +50,10 @@ router.put("/edit/:id", [
         .isLength({ min: 6 })
         .withMessage('Message must be greater than 6')
 ], (req, res) => {
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+        return res.json({ errors: errors.array() });
+    }
     const id = req.params.id;
     isObjectIdValid(id);
 

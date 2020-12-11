@@ -4,7 +4,6 @@ import { Box, Heading, Stack, Center, Text } from '@chakra-ui/react';
 import { EditDeleteButtons } from "../../components/EditDeleteButtons";
 
 const PostDetails = ({ post }) => {  
-    console.log(post) 
     return (
         <Wrapper variant="regular">
             <Stack mb={10} spacing={8}>
@@ -21,7 +20,7 @@ const PostDetails = ({ post }) => {
 }
 
 PostDetails.getInitialProps = async (ctx) => {
-    const res = await fetch(`http://localhost:4000/api${ctx.asPath}`)
+    const res = await fetch(`http://localhost:4000/api/posts/${ctx.query.id}`)
     const json = await res.json();
     return { post: json }
 }
