@@ -44,7 +44,6 @@ export const DataForm = () => {
                             colorScheme="teal"
                             isLoading={isSubmitting}
                             type="submit"
-                            //onClick= {refreshPage}
                         >
                             Submit
                         </Button>

@@ -1,0 +1,23 @@
+version: '3'
+
+services: 
+  api:
+    image: post-box-api
+    build: ./api
+    command: "node index.js"
+    ports:
+      - "4000:4000"
+    depends_on: 
+      - "mongo"
+  client:
+    image: post-box-client
+    build: ./client
+    command: bash -c "yarn start"
+    ports:
+      - "3000:3000"
+    depends_on: 
+      - api
+  mongo:
+    image: mongo 
+    ports: 
+      - "27017:27017"
