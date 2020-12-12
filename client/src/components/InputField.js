@@ -13,18 +13,16 @@ export const InputField = (
         ...props
     }
 ) => {
-    //console.log({title})
     let InputOrTextarea = Input;
     if(textarea){
         InputOrTextarea = Textarea
     }
     const [field, {error}] = useField(props);
     return(
-       
         <FormControl isInvalid={!!error}>
             <FormLabel htmlFor={field.name}>{label}</FormLabel>
             <InputOrTextarea  {...field} {...props} id={field.name} placeholder={props.placeholder} />
-    {error ?  <FormErrorMessage>{error}</FormErrorMessage>: null}
+         {   error ?  <FormErrorMessage>{error}</FormErrorMessage>  : null}
         </FormControl>
     );
 }
